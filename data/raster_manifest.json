@@ -1,0 +1,480 @@
+{
+  "HIST_1979_David": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_David_1979_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 5.2
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_David_1979_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 8.8
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_David_1979_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 11.6
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_David_1979.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 8.4
+    }
+  },
+  "HIST_1998_Georges": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_Georges_1998_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_Georges_1998_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.7
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_Georges_1998_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.0
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_Georges_1998.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.6
+    }
+  },
+  "ERA5_2017_r002_s0071_i09": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r002_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r002_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.7
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r002_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.1
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r002.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.6
+    }
+  },
+  "ERA5_2017_r024_s0056_i31": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r024_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r024_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 5.3
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r024_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 8.5
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r024.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 5.3
+    }
+  },
+  "ERA5_2017_r038_s0093_i17": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r038_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.3
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r038_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r038_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r038.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    }
+  },
+  "ERA5_2017_r017_s0084_i34": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r017_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.4
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r017_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.1
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r017_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 5.4
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r017.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.1
+    }
+  },
+  "ERA5_2017_r023_s0083_i01": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r023_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.2
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r023_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.5
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r023_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.0
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r023.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.5
+    }
+  },
+  "ERA5_2017_r029_s0095_i24": {
+    "tormenta": {
+      "file": "assets/rasters/hmax_CHAZ_r029_tormenta.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.3
+    },
+    "marea_swanN": {
+      "file": "assets/rasters/hmax_CHAZ_r029_marea_swanN.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.8
+    },
+    "marea_swanN_alto": {
+      "file": "assets/rasters/hmax_CHAZ_r029_marea_swanN_alto.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 4.8
+    },
+    "delta_wave": {
+      "file": "assets/rasters/delta_wave_CHAZ_r029.png",
+      "bounds": [
+        [
+          18.297620357855628,
+          -70.09998351071633
+        ],
+        [
+          18.62264780745348,
+          -69.54989201090946
+        ]
+      ],
+      "size_kb": 3.8
+    }
+  },
+  "convergencia_david": {
+    "file": "assets/rasters/dif_zsmax_david_25m_menos_50m.png",
+    "bounds": [
+      [
+        18.297620357855628,
+        -70.09998351071633
+      ],
+      [
+        18.622421866638398,
+        -69.54989128456941
+      ]
+    ],
+    "size_kb": 26.8
+  }
+}

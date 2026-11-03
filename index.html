@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAZ-SFINCS Santo Domingo — Geoportal de Riesgo de Inundación Costera</title>
+    
+    <!-- Critical Map Container Layout -->
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #06101E;
+        }
+        #map-container {
+            display: flex;
+            flex-direction: row;
+            height: calc(100vh - 62px);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        #map-wrapper {
+            flex: 1 1 0;
+            min-width: 0;
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background: #06101E;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+            min-height: 400px;
+            background: #06101E;
+        }
+    </style>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css?v=1.0.0" />
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-branding">
+            <img src="assets/logo.png" alt="UCSC Coastal Systems" class="header-logo" onerror="this.style.display='none'">
+            <div class="header-title-box">
+                <h1>CHAZ-SFINCS Santo Domingo — Geoportal de Inundación Costera</h1>
+                <p>Modelación Hidrodinámica Multi-Escenario &bull; Oleaje SWAN &bull; Incertidumbre de DEMs &bull; Gran Santo Domingo (RD)</p>
+            </div>
+        </div>
+        <div class="header-badges">
+            <div class="badge-pill">
+                <span class="live-indicator"></span>
+                <span>CHAZ + SWAN + SFINCS (56 Corridas)</span>
+            </div>
+            <div class="badge-pill" style="border-color: var(--brand-amber);">
+                <span>Malla 25 m / 50 m &bull; 3 DEMs</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Sidebar Toggle -->
+    <button class="toggle-btn" id="sidebar-toggle">☰ Panel Analítico</button>
+    
+    <!-- Split Layout -->
+    <div id="map-container">
+        
+        <!-- Left Map Viewer -->
+        <div id="map-wrapper">
+            <div id="map"></div>
+            
+            <!-- Quick Cyclone Bar -->
+            <div class="map-cyclone-bar">
+                <span class="bar-label">🌀 Ciclón:</span>
+                <button class="quick-cyclone-btn active" data-event="HIST_1979_David" title="Huracán David (1979) - Cat 5 Histórico">David 1979 (Cat 5)</button>
+                <button class="quick-cyclone-btn" data-event="HIST_1998_Georges" title="Huracán Georges (1998) - Cat 3 Histórico">Georges 1998 (Cat 3)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r002_s0071_i09" title="CHAZ r002 - Cat 5 Sintético Extremo (173 kt)">r002 (Cat 5 Extremo)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r024_s0056_i31" title="CHAZ r024 - Cat 4-5 Rápido (145 kt)">r024 (Cat 4-5)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r038_s0093_i17" title="CHAZ r038 - Benchmark Piloto (45 kt)">r038 (Benchmark)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r017_s0084_i34" title="CHAZ r017 - Cat 2 (95 kt)">r017 (Cat 2)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r023_s0083_i01" title="CHAZ r023 - Trayectoria Sur Lejana">r023 (Sur)</button>
+                <button class="quick-cyclone-btn" data-event="ERA5_2017_r029_s0095_i24" title="CHAZ r029 - Hacia el Norte">r029 (Norte)</button>
+            </div>
+
+            <!-- Quick Scenario Bar -->
+            <div class="map-scenario-bar">
+                <span class="bar-label" style="color: var(--brand-cyan-light);">🌊 Forzamiento:</span>
+                <button class="scenario-btn active" data-scenario="marea_swanN" title="Marea Astronómica + Surge + SWAN Anidado (gamma=0.06)">Surge + SWAN Anidado (γ=0.06)</button>
+                <button class="scenario-btn" data-scenario="marea_swanN_alto" title="Marea + Surge + SWAN Setup Alto (gamma=0.10)">Surge + SWAN Alto (γ=0.10)</button>
+                <button class="scenario-btn" data-scenario="tormenta" title="Solo Sobreelevación Barotrópica (Sin Olas)">Solo Surge (Sin Olas)</button>
+                <button class="scenario-btn" data-scenario="delta_wave" title="Aporte Neto del Oleaje (SWAN - Surge Puro)">Aporte Neto Oleaje</button>
+                <button class="scenario-btn" data-scenario="convergencia_david" title="Convergencia de Malla: David 25m vs 50m (WO-7)">Malla 25m vs 50m (WO-7)</button>
+            </div>
+
+            <!-- Active Product Banner & Legend -->
+            <div class="map-product-banner" id="map-product-banner">
+                <div class="banner-top-row">
+                    <span class="banner-title" id="banner-title">Huracán David 1979 &bull; Surge + SWAN Anidado (γ=0.06)</span>
+                    <div class="banner-layer-toggles">
+                        <label><input type="checkbox" id="toggle-layer-flood" checked> Inundación</label>
+                        <label><input type="checkbox" id="toggle-layer-track" checked> Trayectoria</label>
+                        <label><input type="checkbox" id="toggle-layer-stations" checked> Estaciones</label>
+                        <label><input type="checkbox" id="toggle-layer-infr" checked> Infraestructura</label>
+                    </div>
+                </div>
+                <p class="banner-desc" id="banner-desc">Profundidad máxima de inundación terrestre ($h_{\text{max}}$) calculada con SFINCS 50 m acoplado a SWAN y forzamiento EOT20.</p>
+                <div class="banner-legend" id="banner-legend">
+                    <!-- Dinámico por JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Scientific/Technical Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="tab-flood">1. Inundación</button>
+                <button class="tab-btn" data-tab="tab-dem">2. Auditoría DEMs</button>
+                <button class="tab-btn" data-tab="tab-mesh">3. Malla 25m/50m</button>
+                <button class="tab-btn" data-tab="tab-physics">4. Cadena Física</button>
+            </div>
+
+            <div class="tab-content">
+                
+                <!-- TAB 1: Inundación & Análisis de Riesgo -->
+                <div class="tab-pane active" id="tab-flood">
+                    <h3 class="pane-title" id="side-event-name">Huracán David (1979)</h3>
+                    <p class="pane-subtitle" id="side-event-desc">El huracán más destructivo registrado en Santo Domingo.</p>
+                    
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="val-flood-area">2.11 km²</div>
+                            <div class="metric-label">Área Inundada en Tierra</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value amber" id="val-max-depth">2.98 m</div>
+                            <div class="metric-label">Calado Máximo en Tierra</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="val-volume">2.83 Mm³</div>
+                            <div class="metric-label">Volumen de Inundación</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value red" id="val-wave-gain">+197 %</div>
+                            <div class="metric-label">Aporte Neto del Oleaje</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h4>Impacto de Escenarios en Área Inundada (km²)</h4>
+                        <canvas id="chart-flood-scenarios" height="170"></canvas>
+                    </div>
+
+                    <div class="table-card">
+                        <h4>Resumen de Forzamiento Hidrodinámico</h4>
+                        <table class="compact-table" id="table-scenarios">
+                            <thead>
+                                <tr>
+                                    <th>Escenario</th>
+                                    <th>Calado Máx (m)</th>
+                                    <th>Área Tierra (km²)</th>
+                                    <th>Área Total (km²)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dinámico por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="callout-box info" id="side-callout">
+                        <strong>Nota Técnica:</strong> El área inundada mostrada excluye la clase 80 de ESA WorldCover (cauce permanente del Río Ozama y dársena portuaria), reflejando exclusivamente afectación en suelo urbano y agrícola.
+                    </div>
+                </div>
+
+                <!-- TAB 2: Incertidumbre Topográfica y DEMs -->
+                <div class="tab-pane" id="tab-dem">
+                    <h3 class="pane-title">Sensibilidad e Incertidumbre de DEMs</h3>
+                    <p class="pane-subtitle">Evaluación comparativa de Copernicus GLO-30 DSM, FABDEM v1.2 y DeltaDTM v1.1 en la zona costera de Santo Domingo.</p>
+
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">16.1 km²</div>
+                            <div class="metric-label">Copernicus DSM (< 3m)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value amber">13.1 km²</div>
+                            <div class="metric-label">FABDEM v1.2 (< 3m)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value red">18.9 km²</div>
+                            <div class="metric-label">DeltaDTM v1.1 (< 3m)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">±1.5 m</div>
+                            <div class="metric-label">Incertidumbre Satelital</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h4>Curvas Hipsométricas: Área Acumulada Bajo Cota (km²)</h4>
+                        <canvas id="chart-dem-hypsometry" height="190"></canvas>
+                    </div>
+
+                    <div class="callout-box">
+                        <strong>Diagnóstico Crítico para Gestión del Riesgo:</strong>
+                        Los tres DEMs globales discrepan significativamente bajo la cota de 3 m (rango de 13.1 a 18.9 km²). Copernicus y DeltaDTM sobreestiman el riesgo por remoción incompleta de vegetación o artefactos en zonas urbanas densas, mientras FABDEM filtra copas pero borra infraestructuras defensivas. Se requiere **LiDAR bare-earth (1 a 5 m)** para parametrizar las tablas subgrid de SFINCS.
+                    </div>
+                </div>
+
+                <!-- TAB 3: Convergencia de Malla 50m vs 25m -->
+                <div class="tab-pane" id="tab-mesh">
+                    <h3 class="pane-title">Convergencia de Malla: David 1979</h3>
+                    <p class="pane-subtitle">Auditoría numérica de resolución espacial: Malla 50 m (466×285) vs Malla 25 m (932×570) bajo escenario marea_swanN.</p>
+
+                    <div class="metric-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">-13.0 %</div>
+                            <div class="metric-label">Área Húmeda Espuria</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">84.1 %</div>
+                            <div class="metric-label">Celdas |Δzs| < 0.10 m</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value amber">+0.024 m</div>
+                            <div class="metric-label">Sesgo Medio (Bias)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">1.98x</div>
+                            <div class="metric-label">Ratio de Tiempo CPU</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h4>Distribución de Diferencia de Celda Δzs (25m - 50m)</h4>
+                        <canvas id="chart-mesh-diff" height="180"></canvas>
+                    </div>
+
+                    <div class="table-card">
+                        <h4>Comparación Numérica y Rendimiento (Mac M4)</h4>
+                        <table class="compact-table">
+                            <thead>
+                                <tr>
+                                    <th>Parámetro</th>
+                                    <th>Malla 50 m</th>
+                                    <th>Malla 25 m</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dimensiones Malla</td>
+                                    <td>466 × 285</td>
+                                    <td>932 × 570</td>
+                                </tr>
+                                <tr>
+                                    <td>Celdas Activas</td>
+                                    <td>132,810</td>
+                                    <td>531,240 (4x)</td>
+                                </tr>
+                                <tr>
+                                    <td>Área Mojada en Tierra</td>
+                                    <td>10.36 km²</td>
+                                    <td>9.02 km² (-1.34 km²)</td>
+                                </tr>
+                                <tr>
+                                    <td>zs Máximo en Mar</td>
+                                    <td>3.06 m</td>
+                                    <td>3.04 m</td>
+                                </tr>
+                                <tr>
+                                    <td>Tiempo de Cómputo (10 hilos)</td>
+                                    <td>28.0 min</td>
+                                    <td>55.4 min (1.98x)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 4: Cadena Física Metodológica -->
+                <div class="tab-pane" id="tab-physics">
+                    <h3 class="pane-title">Cadena Metodológica CHAZ-SWAN-SFINCS</h3>
+                    <p class="pane-subtitle">Flujo de trabajo acoplado multi-escala ejecutado en el servidor Mac M4.</p>
+
+                    <div class="pipeline-step-item">
+                        <div class="pipeline-step-header">
+                            <span class="pipeline-step-title">Paso 1: Generación Sintética CHAZ</span>
+                            <span class="pipeline-step-badge">Atmosférico</span>
+                        </div>
+                        <div class="pipeline-step-body">
+                            Catálogo estocástico de trayectorias e intensidades de ciclones tropicales derivado de reanálisis ERA5 con física acoplada océano-atmósfera.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step-item">
+                        <div class="pipeline-step-header">
+                            <span class="pipeline-step-title">Paso 2: Campos de Viento y Presión Spiderweb</span>
+                            <span class="pipeline-step-badge">Vórtice Holland</span>
+                        </div>
+                        <div class="pipeline-step-body">
+                            Reconstrucción de malla polar axisimétrica móvil con radio de vientos máximos ($R_{\text{max}}$) y presión central para forzar marejada y oleaje.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step-item gold">
+                        <div class="pipeline-step-header">
+                            <span class="pipeline-step-title">Paso 3: Espectro de Oleaje SWAN Regional + Local</span>
+                            <span class="pipeline-step-badge">Espectral 2D</span>
+                        </div>
+                        <div class="pipeline-step-body">
+                            Simulación de generación y transformación del oleaje en aguas profundas y someras de la plataforma sur dominicana. Cálculo del setup con formulación de Stockdon.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step-item">
+                        <div class="pipeline-step-header">
+                            <span class="pipeline-step-title">Paso 4: Hidrodinámica Costera y Estuarina SFINCS</span>
+                            <span class="pipeline-step-badge">Subgrid 2.4.1</span>
+                        </div>
+                        <div class="pipeline-step-body">
+                            Solución no lineal de aguas someras acelerada mediante tablas subgrid de elevación y fricción de Manning sobre la desembocadura del Ozama, Haina y Boca Chica.
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step-item">
+                        <div class="pipeline-step-header">
+                            <span class="pipeline-step-title">Paso 5: Validación Observacional y Control de Calidad</span>
+                            <span class="pipeline-step-badge">IOC / PRSN</span>
+                        </div>
+                        <div class="pipeline-step-body">
+                            100% de 56 corridas validadas con continuidad de masa y verificación de estación mareográfica operativa `sdom` (Boca Chica).
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+    </div>
+
+    <!-- Application Scripts -->
+    <script src="js/data-fetcher.js?v=1.0.0"></script>
+    <script src="js/map.js?v=1.0.0"></script>
+    <script src="js/metrics.js?v=1.0.0"></script>
+    <script src="js/pipeline.js?v=1.0.0"></script>
+    <script src="js/main.js?v=1.0.0"></script>
+</body>
+</html>

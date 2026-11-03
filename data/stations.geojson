@@ -1,0 +1,105 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.6175,
+          18.4485
+        ]
+      },
+      "properties": {
+        "id": "sdom_boca_chica",
+        "name": "Mare\u00f3grafo IOC / PRSN Boca Chica (sdom)",
+        "type": "Tide Gauge (Operativo)",
+        "lat": 18.4485,
+        "lon": -69.6175,
+        "operator": "UNESCO IOC / Puerto Rico Seismic Network (PRSN)",
+        "sensor": "Radar de Nivel del Mar IOC",
+        "desc": "Estaci\u00f3n mareogr\u00e1fica operativa en el muelle de Boca Chica. Proporciona nivel real del mar cada 1 minuto (transmisi\u00f3n GTS y web IOC). Insumo clave para calibraci\u00f3n de eventos modernos (ej. Fiona 2022)."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.9,
+          18.43
+        ]
+      },
+      "properties": {
+        "id": "obs_mar_SDQ",
+        "name": "Punto de Control: Malec\u00f3n Santo Domingo",
+        "type": "Virtual Buoy / Gauge",
+        "lat": 18.43,
+        "lon": -69.9,
+        "operator": "SFINCS Simulaci\u00f3n Piloto",
+        "sensor": "SFINCS obs point (Profundidad ~ -10 m)",
+        "desc": "Punto virtual de extracci\u00f3n de hidrograma frente al Malec\u00f3n de Santo Domingo. Mide sobreelevaci\u00f3n de marea y rompiente de olas SWAN."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.88,
+          18.48
+        ]
+      },
+      "properties": {
+        "id": "obs_bajo_Ozama",
+        "name": "Punto de Control: Estuario R\u00edo Ozama",
+        "type": "Virtual Estuary Gauge",
+        "lat": 18.48,
+        "lon": -69.88,
+        "operator": "SFINCS Simulaci\u00f3n Piloto",
+        "sensor": "SFINCS obs point (Cota ~ 1.2 m)",
+        "desc": "Punto de control estuarino aguas arriba del Puente Flotante. Eval\u00faa remanso de marea y penetraci\u00f3n de tormenta hacia La Barquita."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.02,
+          18.42
+        ]
+      },
+      "properties": {
+        "id": "obs_bajo_Haina",
+        "name": "Punto de Control: Desembocadura R\u00edo Haina",
+        "type": "Virtual Coastal Gauge",
+        "lat": 18.42,
+        "lon": -70.02,
+        "operator": "SFINCS Simulaci\u00f3n Piloto",
+        "sensor": "SFINCS obs point (Cota ~ 0.8 m)",
+        "desc": "Punto de control en la rada del Puerto de Haina Oriental/Occidental para monitoreo de calado en muelle."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -69.63,
+          18.4
+        ]
+      },
+      "properties": {
+        "id": "obs_mar_BocaChica",
+        "name": "Punto de Control: Rada de Boca Chica",
+        "type": "Virtual Buoy",
+        "lat": 18.4,
+        "lon": -69.63,
+        "operator": "SFINCS Simulaci\u00f3n Piloto",
+        "sensor": "SFINCS obs point (Profundidad ~ -12 m)",
+        "desc": "Punto de verificaci\u00f3n costa afuera de la barrera arrecifal de Boca Chica y el puerto multimodal Caucedo."
+      }
+    }
+  ]
+}

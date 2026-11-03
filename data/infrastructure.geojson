@@ -1,0 +1,199 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -69.94,
+            18.45
+          ],
+          [
+            -69.92,
+            18.448
+          ],
+          [
+            -69.895,
+            18.46
+          ],
+          [
+            -69.882,
+            18.468
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Malec\u00f3n de Santo Domingo (Av. George Washington)",
+        "category": "Vial Costera / Dique Urbano",
+        "description": "Arteria costera principal de Santo Domingo y primera l\u00ednea de defensa ante el oleaje del Mar Caribe. Vulnerable a sobrepaso de olas extremas."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            -69.884,
+            18.471
+          ],
+          [
+            -69.878,
+            18.472
+          ],
+          [
+            -69.877,
+            18.465
+          ],
+          [
+            -69.883,
+            18.464
+          ],
+          [
+            -69.884,
+            18.471
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Puerto San Souci & Terminal Don Diego (R\u00edo Ozama)",
+        "category": "Infraestructura Portuaria",
+        "description": "Terminal de cruceros y puerto metropolitano. Altamente expuesto a penetraci\u00f3n de marejada por la bocana del r\u00edo Ozama."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            -70.025,
+            18.423
+          ],
+          [
+            -70.015,
+            18.423
+          ],
+          [
+            -70.015,
+            18.412
+          ],
+          [
+            -70.025,
+            18.412
+          ],
+          [
+            -70.025,
+            18.423
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Puerto R\u00edo Haina (Terminal Oriental y Occidental)",
+        "category": "Infraestructura Portuaria y Log\u00edstica",
+        "description": "Principal puerto de carga comercial de la Rep\u00fablica Dominicana. Vulnerable a oleaje incidente del sur y socavaci\u00f3n en escolleras."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            -69.625,
+            18.435
+          ],
+          [
+            -69.615,
+            18.435
+          ],
+          [
+            -69.615,
+            18.428
+          ],
+          [
+            -69.625,
+            18.428
+          ],
+          [
+            -69.625,
+            18.435
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Central Termoel\u00e9ctrica AES Andr\u00e9s (Boca Chica)",
+        "category": "Infraestructura Energ\u00e9tica Cr\u00edtica",
+        "description": "Terminal de regasificaci\u00f3n de GNL y planta el\u00e9ctrica de 319 MW contigua a la costa sur."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            -70.012,
+            18.42
+          ],
+          [
+            -70.005,
+            18.42
+          ],
+          [
+            -70.005,
+            18.414
+          ],
+          [
+            -70.012,
+            18.414
+          ],
+          [
+            -70.012,
+            18.42
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Central Termoel\u00e9ctrica Itabo (Haina)",
+        "category": "Infraestructura Energ\u00e9tica Cr\u00edtica",
+        "description": "Central de generaci\u00f3n a carb\u00f3n y gas natural situada directamente sobre la costa este de Haina."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            -69.885,
+            18.495
+          ],
+          [
+            -69.875,
+            18.49
+          ],
+          [
+            -69.878,
+            18.48
+          ],
+          [
+            -69.889,
+            18.485
+          ],
+          [
+            -69.885,
+            18.495
+          ]
+        ]
+      },
+      "properties": {
+        "name": "Sectores Ribere\u00f1os Vulnerables (La Barquita / Los Guandules / La Ci\u00e9naga)",
+        "category": "Asentamiento Urbano de Alto Riesgo",
+        "description": "Comunidades de muy baja cota topogr\u00e1fica (<2 m) a orillas del r\u00edo Ozama con alta susceptibilidad a remanso estuarino."
+      }
+    }
+  ]
+}

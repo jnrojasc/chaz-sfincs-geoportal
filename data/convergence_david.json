@@ -1,0 +1,38 @@
+{
+  "metrics": {
+    "evento": "HIST_1979_David",
+    "escenario": "marea_swanN",
+    "res_base_m": 50.0,
+    "res_test_m": 25.0,
+    "tiempo_50m_s": 1679.9,
+    "tiempo_25m_s": 3324.4,
+    "razon_tiempo": 1.98,
+    "area_mojada_50m_km2": 10.36,
+    "area_mojada_25m_km2": 9.02,
+    "dif_area_km2": -1.34,
+    "dif_area_pct": -12.98,
+    "celdas_comunes": 43751,
+    "frac_dif_menor_10cm_pct": 84.1,
+    "frac_dif_menor_25cm_pct": 92.36,
+    "sesgo_medio_m": 0.024,
+    "rmse_m": 0.294
+  },
+  "bins_labels": [
+    "<-0.50m",
+    "-0.50 a -0.25m",
+    "-0.25 a -0.10m",
+    "-0.10 a +0.10m (Convergente)",
+    "+0.10 a +0.25m",
+    "+0.25 a +0.50m",
+    ">+0.50m"
+  ],
+  "bins_percentages": [
+    1.4,
+    2.8,
+    3.4,
+    84.1,
+    4.9,
+    2.1,
+    1.3
+  ]
+}
