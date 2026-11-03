@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('Iniciando Geoportal CHAZ-SFINCS Santo Domingo...');
 
     const fetcher = new DataFetcher('data/');
-    const map = new GeoportalMap('map', [18.455, -69.850], 12);
+    const map = new GeoportalMap('map', [18.460, -69.825], 11);
     const metrics = new GeoportalMetrics();
     const pipeline = new PipelineExplainer();
 
-    // 1. Cargar datos asíncronos en paralelo
+    // 1. Cargar datos (soporta data-bundle.js síncrono y fetch asíncrono)
     try {
         const [
             manifest,
@@ -116,6 +116,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 pane.classList.remove('active');
             }
         });
+
+        // Forzar redibujo de Chart.js al cambiar de pestaña
+        metrics.onTabSwitch(targetTabId);
+
+        if (map && map.map) {
+            map.map.invalidateSize();
+        }
     }
 
     tabBtns.forEach(btn => {
@@ -130,7 +137,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sidebar = document.getElementById('sidebar');
     if (sidebarToggle && sidebar) {
         sidebarToggle.addEventListener('click', () => {
-            sidebar.style.display = (sidebar.style.display === 'none' || sidebar.style.display === '') ? 'flex' : 'none';
+            const isHidden = (sidebar.style.display === 'none' || sidebar.style.display === '');
+            sidebar.style.display = isHidden ? 'flex' : 'none';
+            if (map && map.map) {
+                setTimeout(() => map.map.invalidateSize(), 100);
+            }
         });
     }
 

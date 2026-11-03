@@ -28,6 +28,21 @@ class GeoportalMetrics {
         this.updateEventMetrics(this.currentEvent, this.currentScenario);
     }
 
+    onTabSwitch(tabId) {
+        setTimeout(() => {
+            if (tabId === 'tab-dem' && this.chartDem) {
+                this.chartDem.resize();
+                this.chartDem.update();
+            } else if (tabId === 'tab-mesh' && this.chartMesh) {
+                this.chartMesh.resize();
+                this.chartMesh.update();
+            } else if (tabId === 'tab-flood' && this.chartFlood) {
+                this.chartFlood.resize();
+                this.chartFlood.update();
+            }
+        }, 60);
+    }
+
     setEventAndScenario(eventId, scenarioId) {
         this.currentEvent = eventId;
         this.currentScenario = scenarioId;

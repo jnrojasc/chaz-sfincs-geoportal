@@ -39,14 +39,15 @@
         }
     </style>
 
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=1.0.0" />
+    <link rel="stylesheet" href="css/styles.css?v=1.0.2" />
 </head>
 <body>
     
@@ -114,7 +115,7 @@
                         <label><input type="checkbox" id="toggle-layer-infr" checked> Infraestructura</label>
                     </div>
                 </div>
-                <p class="banner-desc" id="banner-desc">Profundidad máxima de inundación terrestre ($h_{\text{max}}$) calculada con SFINCS 50 m acoplado a SWAN y forzamiento EOT20.</p>
+                <p class="banner-desc" id="banner-desc">Profundidad máxima de inundación terrestre (hmax) calculada con SFINCS 50 m acoplado a SWAN y forzamiento EOT20.</p>
                 <div class="banner-legend" id="banner-legend">
                     <!-- Dinámico por JS -->
                 </div>
@@ -191,15 +192,15 @@
                     <div class="metric-grid">
                         <div class="metric-card">
                             <div class="metric-value">16.1 km²</div>
-                            <div class="metric-label">Copernicus DSM (< 3m)</div>
+                            <div class="metric-label">Copernicus DSM (&lt; 3m)</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-value amber">13.1 km²</div>
-                            <div class="metric-label">FABDEM v1.2 (< 3m)</div>
+                            <div class="metric-label">FABDEM v1.2 (&lt; 3m)</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-value red">18.9 km²</div>
-                            <div class="metric-label">DeltaDTM v1.1 (< 3m)</div>
+                            <div class="metric-label">DeltaDTM v1.1 (&lt; 3m)</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-value">±1.5 m</div>
@@ -214,7 +215,7 @@
 
                     <div class="callout-box">
                         <strong>Diagnóstico Crítico para Gestión del Riesgo:</strong>
-                        Los tres DEMs globales discrepan significativamente bajo la cota de 3 m (rango de 13.1 a 18.9 km²). Copernicus y DeltaDTM sobreestiman el riesgo por remoción incompleta de vegetación o artefactos en zonas urbanas densas, mientras FABDEM filtra copas pero borra infraestructuras defensivas. Se requiere **LiDAR bare-earth (1 a 5 m)** para parametrizar las tablas subgrid de SFINCS.
+                        Los tres DEMs globales discrepan significativamente bajo la cota de 3 m (rango de 13.1 a 18.9 km²). Copernicus y DeltaDTM sobreestiman el riesgo por remoción incompleta de vegetación o artefactos en zonas urbanas densas, mientras FABDEM filtra copas pero borra infraestructuras defensivas. Se requiere <strong>LiDAR bare-earth (1 a 5 m)</strong> para parametrizar las tablas subgrid de SFINCS.
                     </div>
                 </div>
 
@@ -230,7 +231,7 @@
                         </div>
                         <div class="metric-card">
                             <div class="metric-value">84.1 %</div>
-                            <div class="metric-label">Celdas |Δzs| < 0.10 m</div>
+                            <div class="metric-label">Celdas |Δzs| &lt; 0.10 m</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-value amber">+0.024 m</div>
@@ -309,7 +310,7 @@
                             <span class="pipeline-step-badge">Vórtice Holland</span>
                         </div>
                         <div class="pipeline-step-body">
-                            Reconstrucción de malla polar axisimétrica móvil con radio de vientos máximos ($R_{\text{max}}$) y presión central para forzar marejada y oleaje.
+                            Reconstrucción de malla polar axisimétrica móvil con radio de vientos máximos (Rmax) y presión central para forzar marejada y oleaje.
                         </div>
                     </div>
 
@@ -339,7 +340,7 @@
                             <span class="pipeline-step-badge">IOC / PRSN</span>
                         </div>
                         <div class="pipeline-step-body">
-                            100% de 56 corridas validadas con continuidad de masa y verificación de estación mareográfica operativa `sdom` (Boca Chica).
+                            100% de 56 corridas validadas con continuidad de masa y verificación de estación mareográfica operativa <code>sdom</code> (Boca Chica).
                         </div>
                     </div>
                 </div>
@@ -348,11 +349,12 @@
         </aside>
     </div>
 
-    <!-- Application Scripts -->
-    <script src="js/data-fetcher.js?v=1.0.0"></script>
-    <script src="js/map.js?v=1.0.0"></script>
-    <script src="js/metrics.js?v=1.0.0"></script>
-    <script src="js/pipeline.js?v=1.0.0"></script>
-    <script src="js/main.js?v=1.0.0"></script>
+    <!-- Application Scripts: Pre-bundled Data + Modules -->
+    <script src="js/data-bundle.js?v=1.0.2"></script>
+    <script src="js/data-fetcher.js?v=1.0.2"></script>
+    <script src="js/map.js?v=1.0.2"></script>
+    <script src="js/metrics.js?v=1.0.2"></script>
+    <script src="js/pipeline.js?v=1.0.2"></script>
+    <script src="js/main.js?v=1.0.2"></script>
 </body>
 </html>

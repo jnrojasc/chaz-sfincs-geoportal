@@ -4,7 +4,7 @@
  */
 
 class GeoportalMap {
-    constructor(containerId = 'map', center = [18.455, -69.850], zoom = 12) {
+    constructor(containerId = 'map', center = [18.460, -69.825], zoom = 11) {
         this.containerId = containerId;
         this.center = center;
         this.zoom = zoom;
@@ -31,11 +31,26 @@ class GeoportalMap {
         this.init();
     }
 
+    resolveUrl(relativePath) {
+        if (!relativePath) return '';
+        if (relativePath.startsWith('http://') || relativePath.startsWith('https://')) return relativePath;
+        let base = window.location.origin;
+        if (!base || base === 'null') return relativePath;
+        let path = window.location.pathname.replace(/\/index\.html$/, '');
+        if (!path.endsWith('/')) path += '/';
+        return `${base}${path}${relativePath}`;
+    }
+
     init() {
+        if (typeof L === 'undefined') {
+            console.error('Error crítico: Leaflet.js no está cargado.');
+            return;
+        }
+
         this.map = L.map(this.containerId, {
             center: this.center,
             zoom: this.zoom,
-            minZoom: 9,
+            minZoom: 8,
             maxZoom: 18,
             zoomControl: true
         });
@@ -117,7 +132,7 @@ class GeoportalMap {
     }
 
     updateRaster() {
-        if (!this.manifest) return;
+        if (!this.manifest || !this.map) return;
 
         this.rasterGroup.clearLayers();
         this.activeImageOverlay = null;
@@ -131,8 +146,9 @@ class GeoportalMap {
         }
 
         if (rasterInfo && rasterInfo.file && rasterInfo.bounds) {
+            const fileUrl = this.resolveUrl(rasterInfo.file);
             this.activeImageOverlay = L.imageOverlay(
-                rasterInfo.file,
+                fileUrl,
                 rasterInfo.bounds,
                 { opacity: 0.92, interactive: false }
             );
@@ -141,7 +157,7 @@ class GeoportalMap {
     }
 
     renderTracks() {
-        if (!this.tracksData) return;
+        if (!this.tracksData || !this.map) return;
         this.trackGroup.clearLayers();
 
         const curEv = this.currentEvent;
@@ -198,7 +214,7 @@ class GeoportalMap {
     }
 
     renderStations() {
-        if (!this.stationsData) return;
+        if (!this.stationsData || !this.map) return;
         this.stationGroup.clearLayers();
 
         this.stationsData.features.forEach(feat => {
@@ -236,7 +252,7 @@ class GeoportalMap {
     }
 
     renderInfrastructure() {
-        if (!this.infrData) return;
+        if (!this.infrData || !this.map) return;
         this.infrGroup.clearLayers();
 
         this.infrData.features.forEach(feat => {
@@ -265,6 +281,7 @@ class GeoportalMap {
     }
 
     toggleLayer(layerName, isVisible) {
+        if (!this.map) return;
         if (layerName === 'flood') {
             if (isVisible) this.map.addLayer(this.rasterGroup);
             else this.map.removeLayer(this.rasterGroup);
